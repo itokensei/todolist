@@ -22,7 +22,7 @@ class HomeController @Inject()(val controllerComponents: ControllerComponents) e
   val taskForm = Form(
     "label" -> nonEmptyText
   )
-  def tasks = Action{
+  def tasks = Action{implicit request =>
     Ok(views.html.index(Task.all(),taskForm))
   }
   def newTask = TODO
