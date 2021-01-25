@@ -12,6 +12,8 @@ GET     /assets/*file               controllers.Assets.versioned(path="/public",
 
 #Tasks
 GET     /tasks                       controllers.HomeController.tasks
++ nocsrf
 POST    /tasks                       controllers.HomeController.newTask
-POST    /tasks                       controllers.HomeController.deleteTask(id: Long)
++ nocsrf
+POST    /tasks/:id/delete            controllers.HomeController.deleteTask(id: Long)
 
