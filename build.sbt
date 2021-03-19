@@ -1,4 +1,4 @@
-name := """todolist2"""
+name := "練習todoList"
 organization := "com.example"
 
 version := "1.0-SNAPSHOT"
