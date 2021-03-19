@@ -13,6 +13,7 @@ libraryDependencies ++= Seq(guice,
   "com.h2database" % "h2" % "1.4.200",
   evolutions, jdbc)
 
+PlayKeys.fileWatchService := play.dev.filewatch.FileWatchService.jdk7(play.sbt.run.toLoggerProxy(sLog.value))
 // Adds additional packages into Twirl
 //TwirlKeys.templateImports += "com.example.controllers._"
 
