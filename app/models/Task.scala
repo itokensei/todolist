@@ -1,11 +1,13 @@
 package models
 
+import java.sql.Connection
+import play.api.db._
+import anorm._
+import anorm.SqlParser._
+
 case class Task(id: Long, label: String)
 
 object Task {
-
-  import anorm._
-  import anorm.SqlParser._
 
   val task = {
     get[Long]("id") ~
@@ -14,15 +16,16 @@ object Task {
       }
   }
 
-  import play.api.db._
-  import play.api.Play.current
+  def all(implicit connection: Connection): List[Task] = SQL("select * from task").as(task.*)
 
-  def all(): List[Task] = db.withConnection { implicit c =>
-    SQL("select * from task").as(task *)
-  }
+  def create(label: String)(implicit connection: Connection) =
+    SQL("insert into task (label) values ({label})")
+      .on('label -> label).executeUpdate()
 
-  def create(label: String) {}
-
-  def delete(id: Long) {}
+  def delete(id: Long)(implicit connection: Connection) =
+    SQL("delete from task where id = {id}")
+      .on(
+        'id -> id
+      ).executeUpdate()
 
 }

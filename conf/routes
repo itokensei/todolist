@@ -14,5 +14,4 @@ GET     /tasks                  controllers.HomeController.tasks
 + nocsrf
 POST    /tasks                  controllers.HomeController.newTask
 + nocsrf
-
 POST    /tasks/:id/delete       controllers.HomeController.deleteTask(id: Long)
